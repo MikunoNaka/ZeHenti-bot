@@ -1,25 +1,16 @@
 import discord
 import random
-# import os  # why
+import os  # why
 # from hentai import hentai
-# from dotenv import load_dotenv
+from dotenv import load_dotenv
 
 # z!info
 INFO_MESSAGE = "Discord bot created by Vidhu Kant Sharma"
 
 greetings = ["Greetings", "Hello", "Hey", "Yahallo", "Namaskar", "Konnichiwa", "Yo"]
 
-
-
-# load_dotenv()
-# TOKEN = 
-
-
-
-
-
-
-
+load_dotenv()
+TOKEN = os.getenv('DISCORD_TOKEN')
 
 # frontend stuff
 client = discord.Client()
@@ -34,6 +25,7 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author == client.user:
+        await message.channel.send("nice try nigga")
         return
     
     if message.content[0:6] == 'z!say ':
