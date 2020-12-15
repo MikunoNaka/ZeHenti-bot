@@ -25,7 +25,6 @@ async def on_ready():
 @client.event
 async def on_message(message):
     if message.author == client.user:
-        await message.channel.send("nice try nigga")
         return
     
     if message.content[0:6] == 'z!say ':
