@@ -12,9 +12,15 @@ def get_info():
 
 bad_words = ['fuck', 'shit', 'bitch', 'cunt', 'sex']#, '', '', '', '', '', '', '', '', '', '', '', '')
 
+# z!help
+def show_help():
+    help = open('help_message.txt', 'r')
+    help_message = help.read()
+    return help_message
 
 
 CALL = "z!"
+
 HELP_MESSAGE = '```Every command should be prefixed with "' + CALL + '".\n\nsay      repeats your previous message\ninfo     displays info about the bot and the creator\nhelp     shows this message```'
 
 
@@ -34,7 +40,6 @@ HELP_MESSAGE = '```Every command should be prefixed with "' + CALL + '".\n\nsay 
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
-PASSWORD = os.getenv('ADMIN_PASSWORD')  # this can prove to be insecure af
 
 # frontend stuff
 client = discord.Client()
@@ -75,7 +80,7 @@ async def on_message(message):
     
     # send help message
     if message.content == CALL + 'help':
-        response = HELP_MESSAGE
+        response = show_help()
         await message.channel.send(response)
     
     # cultured stuff
