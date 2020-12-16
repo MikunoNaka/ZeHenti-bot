@@ -68,22 +68,21 @@ async def on_message(message):
     if message.content == CALL + 'info':
         response = get_info()
         await message.channel.send(response)
+ 
+    if message.content == CALL + 'repo':
+        response = 'My source code: https://github.com/MikunoNaka/ZeHenti-bot.git'
+        await message.channel.send(response)
     
     # send help message
     if message.content == CALL + 'help':
         response = HELP_MESSAGE
         await message.channel.send(response)
-
-
-# cultured stuff
-@client.event
-async def on_message(message):
-    if message.author == client.user:
-        return
-
+    
+    # cultured stuff
     if message.content.split()[0] == CALL + 'find':  # find title of henti 
         sauce = (''.join(message.content.split()[1:])) 
         response = H.find_title(sauce)
         await message.channel.send(response)
+
 
 client.run(TOKEN)
