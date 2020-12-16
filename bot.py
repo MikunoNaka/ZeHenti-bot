@@ -2,7 +2,8 @@ import discord
 import os
 from dotenv import load_dotenv
 import random
-# from hentai import hentai
+import math
+import henti as H  # the good stuff
 
 greetings = ["Greetings.", "Hello.", "Hey!", "Yahallo!", "Namaskar,", "Konnichiwa,", "Yo!"]
 def get_info():
@@ -33,6 +34,7 @@ HELP_MESSAGE = '```Every command should be prefixed with "' + CALL + '".\n\nsay 
 
 load_dotenv()
 TOKEN = os.getenv('DISCORD_TOKEN')
+PASSWORD = os.getenv('ADMIN_PASSWORD')  # this can prove to be insecure af
 
 # frontend stuff
 client = discord.Client()
@@ -47,6 +49,7 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    # ignore if sent by itself
     if message.author == client.user:
         return
    
@@ -71,5 +74,16 @@ async def on_message(message):
         response = HELP_MESSAGE
         await message.channel.send(response)
 
+
+# cultured stuff
+@client.event
+async def on_message(message):
+    if message.author == client.user:
+        return
+
+    if message.content.split()[0] == CALL + 'find':  # find title of henti 
+        sauce = (''.join(message.content.split()[1:])) 
+        response = H.find_title(sauce)
+        await message.channel.send(response)
 
 client.run(TOKEN)
