@@ -1,7 +1,0 @@
-```
-Every command should be prefixed with "' + CALL + '".
-say      repeats your previous message
-info     displays info about the bot and the creator
-help     shows this message
-```
-
