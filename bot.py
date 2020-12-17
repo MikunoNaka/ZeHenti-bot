@@ -4,25 +4,29 @@ import random
 from dotenv import load_dotenv
 from discord.ext import commands
 
-from henti import Numbers as n
+from henti import Numbers
 
 load_dotenv()  # load .env file
 TOKEN = os.getenv('DISCORD_TOKEN')
-bot = commands.Bot(command_prefix='z!')  # initialise the bot
+
+PREFIXES = ['z!', '?']  # prefixes for the bot's commands
+bot = commands.Bot(command_prefix=PREFIXES)  # initialise the bot with pre-defined prefixes
 
 
 
 
 # get title of henti
-@bot.command(name='info', help='Get the title of doujin using the holy numbers')
+@bot.command(name='info', help='Get the info about a doujin using the holy numbers')
 async def getInfo(ctx, sauce):
-    r = n(sauce).title()
+    doujin = Numbers(sauce)
+    r = doujin.title()
     await ctx.send(r)
 
 # short for the same
-@bot.command(name='i', help='short fot z!title')
+@bot.command(name='i', help='short fot z!info')
 async def getInfo(ctx, sauce):
-    r = n(sauce).title()
+    doujin = Numbers(sauce)
+    r = doujin.info()
     await ctx.send(r)
 
 

@@ -2,30 +2,39 @@ from hentai import Hentai
 from hentai import Format
 
 class Numbers:
-    def __init__(self, number):
-        self.sauce = Hentai(number)
-
     def title(self):
         title = self.sauce.title(Format.Pretty)
         return title
-"""
+
     def artist(self):
-        artist = str(Hentai(sauce).artist).split(', ')[2]  # name='artist'
+        artist = str(self.sauce.artist).split(', ')[2]
         name = artist[6:-1]  # just the artist's name
         return name
 
-    def tags():
-        # get a henti's tags
-        pass
+    def Tags(self):
+        tags = []
+        for tag in self.sauce.tag:
+            # get names of tags and put them in a list
+            tags.append(tag.name)
+        print(tags)
+
+
+
+
+
+
+    def __init__(self, number):
+        sauce = Hentai(number)
+        self.sauce = sauce
+
+        
     
-    def get_title(sauce): 
+    
+#     def info(self): 
         # get hentai title in readable format
-        title = str(Hentai(sauce).title(Format.Pretty))
-        artist = get_artist(sauce)
-        r = "{title} ({sauce}) by {artist}\nhttps://nhentai.net/g/{sauce}/".format(title=title, artist=artist, sauce=sauce)
-        return r
-"""
-# print(Numbers(177013).title())
-# print(Numbers.title(177013))
-# print(Numbers.title(177013))
-# print(x.title())
+#         _title = Numbers.title(self.sauce)
+#         _artist = Numbers.artist(self.sauce)
+#         _tags = Numbers.tags(self.sauce)
+#         sauce = self.sauce
+#         r = "{title} ({sauce}) by {artist}\nhttps://nhentai.net/g/{sauce}/"#.format(title=title, artist=artist, sauce=sauce)
+#         return r
